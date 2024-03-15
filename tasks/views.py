@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.utils.html import escape
 
 from tasks.models import Collection
 
@@ -11,6 +12,6 @@ def index(request):
 
 
 def add_collection(request):
-    collection_name = request.POST.get("collection-name")
+    collection_name = escape(request.POST.get("collection-name"))
     Collection.objects.create(name=collection_name)
     return redirect('home')
