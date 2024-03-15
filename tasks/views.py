@@ -13,5 +13,8 @@ def index(request):
 
 def add_collection(request):
     collection_name = escape(request.POST.get("collection-name"))
-    Collection.objects.create(name=collection_name)
+    collection, created = Collection.objects.get_or_create(name=collection_name)
+    if not created:
+        return HttpResponse("La collection existe déjà.")
+
     return redirect('home')
