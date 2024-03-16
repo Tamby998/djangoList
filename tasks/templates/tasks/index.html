@@ -40,9 +40,7 @@
     </form>
 
     <div id="tasks">
-        {% for task in tasks %}
-            <p>{{ task.description }}</p>
-        {% endfor %}
+        {% include 'tasks/tasks.html' with tasks=tasks %}
     </div>
 <script>
     document.body.addEventListener("htmx:responseError", function(event) {
