@@ -9,7 +9,11 @@
     <h1>Django List</h1>
     <div id="collections">
         {% for collection in collections %}
-            <h2>{{ collection.name }}</h2>
+            <button
+                    hx-get="{% url 'get-tasks' collection.pk %}"
+                    hx-target="#tasks">
+                {{ collection.name }}
+            </button>
         {% endfor %}
     </div>
 
