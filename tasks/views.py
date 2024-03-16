@@ -7,6 +7,9 @@ from tasks.models import Collection
 
 def index(request):
     context = {}
+
+    collection = Collection.get_default_collection()
+
     context["collections"] = Collection.objects.order_by("name")
     return render(request, 'tasks/index.html', context=context)
 
