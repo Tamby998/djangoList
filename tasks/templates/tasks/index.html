@@ -37,7 +37,7 @@
     </form>
 
     <div id="tasks">
-        {% include 'tasks/tasks.html' with tasks=tasks %}
+        {% include 'tasks/tasks.html' with tasks=tasks collection=collection %}
     </div>
 <script>
     document.body.addEventListener("htmx:responseError", function(event) {
