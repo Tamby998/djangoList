@@ -16,6 +16,7 @@ def index(request):
         collection = get_object_or_404(Collection, slug=collection_slug)
 
     context["collections"] = Collection.objects.order_by("slug")
+    context["collection"] = collection
     context["tasks"] = collection.task_set.order_by("description")
     # tasks = collection.task_set.order_by("description")
     # context["tasks"] = render_to_string('tasks/tasks.html', context={"tasks": tasks})
@@ -28,15 +29,15 @@ def add_collection(request):
     if not created:
         return HttpResponse("La collection existe déjà.", status=409)
 
-    return HttpResponse(f'<h2>{collection_name}</h2>')
+    return render(request, 'tasks/collection.html', context={"collection": collection})
 
 
 def add_task(request):
-    collection = Collection.objects.get(slug="_defaut")
+    collection = Collection.objects.get(slug=request.POST.get("collection"))
     description = escape(request.POST.get("task-description"))
-    Task.objects.create(description=description, collection=collection)
+    task = Task.objects.create(description=description, collection=collection)
 
-    return HttpResponse(description)
+    return render(request, 'tasks/task.html', context={"task": task})
 
 
 def get_tasks(request, collection_pk):

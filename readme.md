@@ -15,7 +15,7 @@
 [] Supprimer une collection  
 [] Renommer une collection  
 [x] Empêcher l'ajout d'une collection en doublon   
-[] Ajouter une tâche (reliée à une collection)  
+[x] Ajouter une tâche (reliée à une collection)  
 [] Supprimer une tâches  
 [x] Afficher les tâches d'une collection
 
